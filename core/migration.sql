@@ -53,7 +53,7 @@ DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci AUTO_INCREMENT = 1;
 CREATE TABLE IF NOT EXISTS posts (
 	id INT(11)unsigned NOT NULL AUTO_INCREMENT,
 	title VARCHAR(60) COLLATE utf8_general_ci NOT NULL DEFAULT '',
-	body TEXT COLLATE utf8_genereal_ci  NULL,
+	body TEXT COLLATE utf8_general_ci  NULL,
 	img VARCHAR(80) COLLATE utf8_general_ci NULL  ,
 	category_id INT(11) unsigned NOT NULL,
 	user_id INT(11) unsigned  NOT NULL,

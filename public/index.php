@@ -11,7 +11,7 @@
   <body>
     
     <?php  
-      include('includes/navbar.php');
+      include('../includes/navbar.php');
     ?>
 
     <section class="main-banner">
@@ -276,6 +276,8 @@
         
       }); 
     </script>
+
+
 
   </body>
 </html>

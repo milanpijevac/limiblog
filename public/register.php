@@ -1,5 +1,5 @@
 <?php
-require_once('core/start.php');
+require_once('../core/start.php');
 
 if(Input::exists('post')) {
 	// validacija podataka
@@ -41,6 +41,7 @@ if(Input::exists('post')) {
         date('Y-m-d H-i-s') // updated_ay
   ];
 
+  // kreiranje korisnika
   $user->create($fields);
     // redirekt
     Session::set('success', 'You have been registered successfuly and can now login!');
@@ -72,10 +73,10 @@ if(Input::exists('post')) {
   <title>LimiBlog - Register</title>
 
   <!-- Custom fonts for this template-->
-  <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template-->
-  <link href="admin/css/sb-admin.css" rel="stylesheet">
+  <link href="../admin/css/sb-admin.css" rel="stylesheet">
 
 </head>
 
@@ -141,11 +142,11 @@ if(Input::exists('post')) {
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="admin/vendor/jquery/jquery.min.js"></script>
-  <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../admin/vendor/jquery/jquery.min.js"></script>
+  <script src="../admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 </body>
 

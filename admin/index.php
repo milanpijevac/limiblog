@@ -1,4 +1,16 @@
 
+<?php
+  require_once('../core/start.php');
+  $user = new User();
+  $user->checkLogin();
+
+  if(!$user->isLoggedIn()) {
+    Redirect::to('../public/index.php');
+  }
+  
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +38,6 @@
    <?php include('includes/sidebar.php') ?>
 
     <div id="content-wrapper">
-
       <div class="container-fluid">
 
         <!-- Breadcrumbs-->
@@ -37,12 +48,34 @@
           <li class="breadcrumb-item active">Overview</li>
         </ol>
 
+
+  <!-- Poruke -->
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <?php 
+        include('../includes/messages.php');
+      ?>
+    </div>
+  </div>
+
+
+        <div class="card">
+          <h5 class="card-header">Featured</h5>
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+
+
+
+
       </div>
       <!-- /.container-fluid -->
 
       <!-- Sticky Footer -->
       <?php include('includes/footer.php') ?>    
-
     </div>
     <!-- /.content-wrapper -->
 

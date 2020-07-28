@@ -1,22 +1,21 @@
 <?php
 require_once('../core/start.php');
 
+if(Input::exists('post')) {
+  $email = Input::get('email');
+  $password = Input::get('password');
+  
+  // validacija - dodati
+  $user = new User();
+  if($user->login($email, $password)) {
+    Session::set('success', 'You are logged in now, welcome back!');
+    Redirect::to('../admin/index.php');
+  } else {
+    Session::set('error', 'Login failed!');
+  }
 
 
-// if(Input::exists('post')) {
-// 	$username = Input::get('username');
-// 	$password = Input::get('password');
-	
-// 	// upit u bazu - preskacemo
-
-// 	if($korisnici[$username] == $password) {
-// 		Session::set('username', $username);
-// 		Redirect::to('profile.php');
-// 	} else {
-// 		echo "Username ili password nisu validni";
-// 	}
-
-// }
+} // end if(Input::exists())
 
 ?>
 
@@ -42,6 +41,17 @@ require_once('../core/start.php');
 </head>
 
 <body class="bg-dark">
+
+  <!-- Poruke -->
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <?php 
+        include('../includes/messages.php');
+      ?>
+    </div>
+  </div>
+
+
 
   <div class="container">
     <div class="card card-login mx-auto mt-5">

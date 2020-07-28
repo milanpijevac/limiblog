@@ -2,63 +2,61 @@
 require_once('../core/start.php');
 
 if(Input::exists('post')) {
-	// validacija podataka
-	$validate = new Validate();
-  $rules = [
-    'username' => [
-        'required' => true,
-        'min'      => 2,
-        'max'      => 60
-    ],
+    // validacija podataka
+    $validate = new Validate();
+    $rules = [
+      'username' => [
+          'required'  => true,
+          'min'       => 2,
+          'max'       => 60
+      ],
 
-    'password' => [
+      'password' => [
         'required' => true,
         'min'      => 6
-    ],
+      ],
 
-    'retype' => [
+      'retype' => [
         'required' => true,
-        'matches'  => 'password'
-    ],
+        'matches' => 'password'
 
-    'email' => [
-        'required' => true,
-        'email'    => true
-    ]
-  ];
-  $validation = $validate->check($_POST, $rules);
-  if ($validation->passed()) {
+      ],
 
-    $user = new User();
+      'email' => [
+            'required' => true,
+            'email'    => true,
+      ]
 
-    $fields = [
-        NULL, // id
-        Input::get('username'),
-        Input::get('email'),
-        Hash::make( Input::get('password')), //hasovanje passworda
-        'user',
-        date('Y-m-d H-i-s'), //created_at
-        date('Y-m-d H-i-s') // updated_ay
-  ];
+    ];
+    $validation = $validate->check($_POST, $rules);
 
-  // kreiranje korisnika
-  $user->create($fields);
-    // redirekt
-    Session::set('success', 'You have been registered successfuly and can now login!');
-    Redirect::to('login.php');
+    if($validation->passed()) {
+      // registracija korisnika
+      $user = new User();
 
+      $fields = [
+          NULL,   // id
+          Input::get('username'),
+          Input::get('email'),   
+          Hash::make( Input::get('password') ), // hashovanje password-a
+          'user',
+          date('Y-m-d H:i:s'), // created_at
+          date('Y-m-d H:i:s')  // updated_at
+      ];
+      // kreiranje korisnika
+      $user->create($fields);
+      // redirekt
+      Session::set('success', 'You have been registered successfuly and can now login!');
+      Redirect::to('login.php');    
 
   } else { // u slucaju da validacija nije prosla
+    // setovanje gresaka --> Session
     Session::set('errors', $validation->errors());
   }
 
+} // if Input::exists
 
-	
-} // if Input exists
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,6 +79,17 @@ if(Input::exists('post')) {
 </head>
 
 <body class="bg-dark">
+
+  <!-- Poruke -->
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <?php 
+        include('../includes/messages.php');
+      ?>
+    </div>
+  </div>
+
+  
 
   <div class="container">
     <div class="card card-register mx-auto mt-5">

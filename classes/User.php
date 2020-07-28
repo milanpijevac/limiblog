@@ -4,7 +4,7 @@
 class User {
 	private $db,
 			$data = [],
-			$isLoogedIn = false;
+			$isLoggedIn = false;
 
 
 		public function __construct () {
@@ -19,7 +19,7 @@ class User {
 				if ( Hash::make($password) === $this->data->password) {
 		// login
 						Session::set('user',$this->data->id);
-						return $this->isLoogedIn = true;
+						return $this->isLoggedIn = true;
 					}	
 			}
 		}
@@ -29,7 +29,7 @@ class User {
 		public function checkLogin() {
 			if (Session::exists('user')) {
 				if ($this->find(Session::get('user'))) {
-					return $this->isLoogedIn = true;
+					return $this->isLoggedIn = true;
 				}
 			}
 			return $this->isLoogedIn = false;
@@ -38,7 +38,7 @@ class User {
 		// logout
 		public function logout() {
 			Session::delete('user');
-			return $this->isLoogedIn = false;
+			return $this->isLoggedIn = false;
 		}
 
 		// create
@@ -71,8 +71,8 @@ class User {
 			return $this->data;
 		}
 
-		public function isLoogedIn() {
-			return $this->isLoogedIn;
+		public function isLoggedIn() {
+			return $this->isLoggedIn;
 		}
 
 		public function exists() {

@@ -5,7 +5,8 @@
   $user->checkLogin();
 
   if(!$user->isLoggedIn()) {
-    Redirect::to('../public/index.php');
+    Session::set('error', 'You need to login!');
+    Redirect::to('../public/login.php');
   }
   
 ?>
@@ -17,25 +18,25 @@
 <head>
 
   <!-- Metatags -->
-  <?php include('includes/metatags.php') ?>  
+  <?php include('includes/metatags.php'); ?>  
 
   <title>LimiBlog Admin - Dashboard</title>
 
   <!-- Styles -->
-  <?php include('includes/styles.php') ?>    
+  <?php include('includes/styles.php'); ?>    
 
 </head>
 
 <body id="page-top">
 
   <!-- Navbar -->
-   <?php include('includes/navbar.php') ?>
+   <?php include('includes/navbar.php'); ?>
   
 
   <div id="wrapper">
 
     <!-- Sidebar -->
-   <?php include('includes/sidebar.php') ?>
+   <?php include('includes/sidebar.php'); ?>
 
     <div id="content-wrapper">
       <div class="container-fluid">
@@ -59,14 +60,6 @@
   </div>
 
 
-        <div class="card">
-          <h5 class="card-header">Featured</h5>
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
 
 
 
@@ -75,7 +68,7 @@
       <!-- /.container-fluid -->
 
       <!-- Sticky Footer -->
-      <?php include('includes/footer.php') ?>    
+      <?php include('includes/footer.php'); ?>    
     </div>
     <!-- /.content-wrapper -->
 
@@ -88,7 +81,7 @@
   </a>
 
   <!-- Javascript -->
-  <?php include('includes/javascript.php') ?>
+  <?php include('includes/javascript.php'); ?>
 
 
 </body>
